@@ -258,6 +258,19 @@ window.addEventListener('click', () => {
   if (!contextMenu.classList.contains('hidden')) contextMenu.classList.add('hidden');
 });
 
+let isAlwaysOnTop = true;
+if (!document.getElementById('menu-top')) {
+  const topBtn = document.createElement('div');
+  topBtn.className = 'menu-item'; topBtn.id = 'menu-top';
+  topBtn.innerText = '항상 위에 고정: 켜짐';
+  topBtn.addEventListener('click', () => {
+    isAlwaysOnTop = !isAlwaysOnTop;
+    topBtn.innerText = isAlwaysOnTop ? '항상 위에 고정: 켜짐' : '항상 위에 고정: 꺼짐';
+    ipcRenderer.send('toggle-top', isAlwaysOnTop);
+  });
+  contextMenu.insertBefore(topBtn, menuClose);
+}
+
 if (!document.getElementById('menu-reset')) {
   const resetBtn = document.createElement('div');
   resetBtn.className = 'menu-item'; resetBtn.id = 'menu-reset';

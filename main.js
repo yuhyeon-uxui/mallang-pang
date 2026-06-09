@@ -37,6 +37,13 @@ function createWindow() {
       mainWindow.setPosition(pos.x, pos.y);
     }
   });
+
+  // 항상 위에 고정 토글
+  ipcMain.on('toggle-top', (event, isTop) => {
+    if (mainWindow) {
+      mainWindow.setAlwaysOnTop(isTop);
+    }
+  });
 }
 
 app.whenReady().then(createWindow);
