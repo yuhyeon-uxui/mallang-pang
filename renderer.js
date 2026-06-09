@@ -220,6 +220,18 @@ waxball.addEventListener('mousedown', (e) => {
 });
 
 window.addEventListener('mousemove', (e) => {
+  // 투명한 영역(배경)에서는 클릭/스크롤이 뒤쪽 프로그램으로 통과되도록 처리
+  const el = document.elementFromPoint(e.clientX, e.clientY);
+  const isHoveringWaxball = el && (el.closest('#waxball') || el.closest('#context-menu'));
+  
+  if (!isDragging) {
+    if (isHoveringWaxball) {
+      ipcRenderer.send('set-ignore-mouse-events', false);
+    } else {
+      ipcRenderer.send('set-ignore-mouse-events', true, { forward: true });
+    }
+  }
+
   if (!isDragging) return;
   
   if (isSlimeMode) {

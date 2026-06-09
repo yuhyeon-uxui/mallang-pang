@@ -46,6 +46,14 @@ function createWindow() {
       win.setAlwaysOnTop(isTop);
     }
   });
+
+  // 투명 영역 클릭/스크롤 통과 처리
+  ipcMain.on('set-ignore-mouse-events', (event, ignore, options) => {
+    const win = BrowserWindow.fromWebContents(event.sender);
+    if (win) {
+      win.setIgnoreMouseEvents(ignore, options);
+    }
+  });
 }
 
 app.whenReady().then(createWindow);
