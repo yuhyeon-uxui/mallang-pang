@@ -28,9 +28,14 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Build and Release Electron app
-        uses: samuelmeuli/action-electron-builder@v1
-        with:
-          github_token: ${{ secrets.github_token }}
-          release: true
-          build_args: -c.extraMetadata.main=main.js
+      - name: Build and Publish macOS
+        if: matrix.os == 'macos-latest'
+        run: npx electron-builder --mac -p always -c.extraMetadata.main=main.js
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and Publish Windows
+        if: matrix.os == 'windows-latest'
+        run: npx electron-builder --win -p always -c.extraMetadata.main=main.js
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
