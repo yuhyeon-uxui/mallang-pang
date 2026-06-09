@@ -5,14 +5,14 @@ let mainWindow;
 
 function createWindow() {
   const { width, height } = screen.getPrimaryDisplay().workAreaSize;
-  const winWidth = 250;
-  const winHeight = 250;
+  const winWidth = 800;
+  const winHeight = 800;
 
   mainWindow = new BrowserWindow({
     width: winWidth,
     height: winHeight,
-    x: 50,
-    y: height - winHeight - 50, // 모니터 좌측 하단
+    x: 0,
+    y: height - winHeight, // 모니터 좌측 하단 (투명 창이므로 넉넉하게 800x800 사용)
     transparent: true,
     frame: false,
     alwaysOnTop: true,
