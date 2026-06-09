@@ -30,13 +30,13 @@ jobs:
 
       - name: Build and Publish macOS
         if: matrix.os == 'macos-latest'
-        run: npx electron-builder --mac -p always -c.extraMetadata.main=main.js
+        run: npx electron-builder --mac -p always
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CSC_IDENTITY_AUTO_DISCOVERY: false
 
       - name: Build and Publish Windows
         if: matrix.os == 'windows-latest'
-        run: npx electron-builder --win -p always -c.extraMetadata.main=main.js
+        run: npx electron-builder --win -p always
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -5,8 +5,8 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "build": "electron-builder --win -c.extraMetadata.main=main.js",
-    "build:mac": "electron-builder --mac -c.extraMetadata.main=main.js"
+    "build": "electron-builder --win",
+    "build:mac": "electron-builder --mac"
   },
   "build": {
     "appId": "com.yuhyeon.mallangpang",
