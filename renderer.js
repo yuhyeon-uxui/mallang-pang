@@ -141,9 +141,9 @@ function shatterAt(px, py) {
   
   // 타격 횟수에 비례하여 조각들이 제자리에서 수축하며 틈이 생김 (폭발하지 않음)
   fragments.forEach(frag => {
-    // 8번 타격하므로 수축 비율을 천천히 증가시킴
-    const scale = Math.max(0.65, 1 - (currentHits * 0.035)); 
-    const rot = parseFloat(frag.dataset.rot) * (currentHits * 0.15);
+    // 15번 타격하므로 수축 비율을 아주 천천히 증가시킴
+    const scale = Math.max(0.65, 1 - (currentHits * 0.02)); 
+    const rot = parseFloat(frag.dataset.rot) * (currentHits * 0.1);
     
     // CSS Transition이 먹히도록 미세 딜레이 후 속성 적용
     setTimeout(() => {
@@ -192,7 +192,7 @@ waxball.addEventListener('mousedown', (e) => {
   }
   
   playCrunchSound();
-  health -= 12.5; // 8번 타격 시 완전히 파괴됨
+  health -= 6.666; // 15번 타격 시 완전히 파괴됨 (100 / 15 = 6.666)
   currentHits++;
   
   if (currentHits === 1) {
