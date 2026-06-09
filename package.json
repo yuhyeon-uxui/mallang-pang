@@ -5,7 +5,8 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "build": "electron-builder --win -c.extraMetadata.main=main.js"
+    "build": "electron-builder --win -c.extraMetadata.main=main.js",
+    "build:mac": "electron-builder --mac -c.extraMetadata.main=main.js"
   },
   "build": {
     "appId": "com.yuhyeon.mallangpang",
@@ -16,10 +17,18 @@
     "win": {
       "target": "portable",
       "icon": "build/icon.png"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "build/icon.png"
     }
   },
   "keywords": [],
-  "author": "",
+  "author": "Yuhyeon",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yuhyeon-uxui/mallang-pang.git"
+  },
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
