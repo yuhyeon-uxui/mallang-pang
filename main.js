@@ -33,15 +33,17 @@ function createWindow() {
 
   // 창 이동 이벤트 처리 (드래그)
   ipcMain.on('move-window', (event, pos) => {
-    if (mainWindow) {
-      mainWindow.setPosition(pos.x, pos.y);
+    const win = BrowserWindow.fromWebContents(event.sender);
+    if (win) {
+      win.setPosition(Math.round(pos.x), Math.round(pos.y));
     }
   });
 
   // 항상 위에 고정 토글
   ipcMain.on('toggle-top', (event, isTop) => {
-    if (mainWindow) {
-      mainWindow.setAlwaysOnTop(isTop);
+    const win = BrowserWindow.fromWebContents(event.sender);
+    if (win) {
+      win.setAlwaysOnTop(isTop);
     }
   });
 }
