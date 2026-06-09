@@ -1,0 +1,86 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: transparent;
+  user-select: none;
+}
+
+#container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+#waxball {
+  width: 150px;
+  height: 150px;
+  position: relative;
+  cursor: pointer;
+  /* 부드러운 찌그러짐 애니메이션 */
+  transition: transform 0.1s cubic-bezier(0.25, 1.5, 0.5, 1);
+  /* 자바스크립트로 제어할 CSS 변수 */
+  transform: scale(var(--scale-x, 1), var(--scale-y, 1)) translateY(var(--translate-y, 0));
+}
+
+#slime-core {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: 50%;
+  background: var(--inner-color, #c4ff00);
+  /* 슬라임 특유의 입체감과 광택 */
+  box-shadow: 
+    inset -10px -10px 20px rgba(0,0,0,0.2),
+    inset 10px 10px 20px rgba(255,255,255,0.8),
+    5px 15px 25px rgba(0,0,0,0.3);
+}
+
+#shell-container {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: 50%;
+  overflow: hidden; /* 구형을 유지하며 조각들이 바깥으로 나가는 것은 잘림 */
+  /* 조각들이 모여있을 때의 전체 껍질 광택 */
+  box-shadow: inset 10px 10px 20px rgba(255,255,255,0.2);
+  pointer-events: none;
+}
+
+.shell-fragment {
+  position: absolute;
+  top: -5px; left: -5px; right: -5px; bottom: -5px; /* 약간 여유를 둬서 틈새가 없게 함 */
+  background: var(--outer-color, radial-gradient(circle at 30% 30%, #3a1c3b, #110811));
+  transition: transform 0.1s cubic-bezier(0.25, 1.5, 0.5, 1), opacity 0.3s ease;
+  /* 조각 하나하나가 가지는 두께감(그림자) - 3D 흉내 */
+  filter: drop-shadow(0px 2px 3px rgba(0,0,0,0.7));
+}
+
+/* 우클릭 메뉴 */
+#context-menu {
+  position: absolute;
+  background: rgba(40, 40, 40, 0.9);
+  color: white;
+  border-radius: 8px;
+  padding: 5px 0;
+  font-family: 'Malgun Gothic', sans-serif;
+  font-size: 13px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  z-index: 100;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.menu-item {
+  padding: 8px 15px;
+  cursor: pointer;
+}
+
+.menu-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
